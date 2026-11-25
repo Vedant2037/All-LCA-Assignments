@@ -1,1 +1,67 @@
 
+#include <stdio.h>
+
+int main()
+{
+    int year, month, day;
+    int days, startDay, i, j;
+    int y, m;
+
+    char *months[] = {
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    };
+
+    int monthDays[] = {
+        31, 28, 31, 30, 31, 30,
+        31, 31, 30, 31, 30, 31
+    };
+
+    printf("Enter year: ");
+    scanf("%d", &year);
+
+    if(year < 1)
+    {
+        printf("Invalid year.");
+        return 0;
+    }
+
+    if((year % 400 == 0) ||
+       (year % 4 == 0 && year % 100 != 0))
+    {
+        monthDays[1] = 29;
+    }
+
+    y = year;
+    m = 1;
+
+    startDay = (y + y/4 - y/100 + y/400 + 6) % 7;
+
+    for(month = 0; month < 12; month++)
+    {
+        printf("\n\n       %s %d\n", months[month], year);
+        printf("Sun Mon Tue Wed Thu Fri Sat\n");
+
+        for(i = 0; i < startDay; i++)
+        {
+            printf("    ");
+        }
+
+        days = monthDays[month];
+
+        for(day = 1; day <= days; day++)
+        {
+            printf("%3d ", day);
+
+            if((startDay + day) % 7 == 0)
+                printf("\n");
+        }
+
+        startDay = (startDay + days) % 7;
+    }
+
+    return 0;
+}
+
