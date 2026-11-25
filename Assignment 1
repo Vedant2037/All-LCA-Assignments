@@ -1,1 +1,28 @@
 
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char email[100], password[100];
+
+    printf("Enter Gmail ID: ");
+    scanf("%99s", email);
+
+    printf("Enter Password: ");
+    scanf("%99s", password);
+
+    if (strstr(email, "@gmail.com") != NULL &&
+        strlen(password) > 0)
+    {
+        printf("\nLogin details entered successfully.");
+        printf("\nActual Gmail authentication is not performed.");
+    }
+    else
+    {
+        printf("\nInvalid Gmail ID.");
+    }
+
+    return 0;
+}
+
